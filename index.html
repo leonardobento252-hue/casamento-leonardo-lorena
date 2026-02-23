@@ -43,10 +43,12 @@
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 4.4rem; /* tamanho matrimonial original */
-      margin-bottom: .8rem;
-      letter-spacing: 2px;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.35);
+      font-size: 5.2rem; /* maior e mais imponente */
+      font-weight: 600;
+      letter-spacing: 3px; /* toque matrimonial elegante */
+      line-height: 1.1;
+      margin-bottom: .6rem;
+      text-shadow: 0 6px 24px rgba(0,0,0,0.35);
     }
 
     header p {
@@ -417,6 +419,7 @@
     <div class="gallery-item fade-in">
       <img src="img/4.jpg" alt="Foto do casal 4">
       <div class="gallery-overlay">❤</div>
+    </div>
   </div>
 
   <div class="gallery-more" id="galleryMore">
@@ -427,6 +430,11 @@
     <div class="gallery-item fade-in"><img src="img/9.jpg" alt="Foto 9"><div class="gallery-overlay">❤</div></div>
     <div class="gallery-item fade-in"><img src="img/10.jpg" alt="Foto 10"><div class="gallery-overlay">❤</div></div>
   </div>
+
+  <div style="text-align:center;">
+    <button class="gallery-btn" onclick="toggleGallery()">Ver mais fotos</button>
+  </div>
+</section>
 
   <div style="text-align:center;">
     <button class="gallery-btn" onclick="toggleGallery()">Ver mais fotos</button>
@@ -492,3 +500,4 @@
 
 </body>
 </html>
+
