@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leonardo & Lorena | 18.07.2026</title>
+  <meta name="description" content="Site de casamento de Leonardo e Lorena – 18 de julho de 2026. Presentes em forma de doações." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f6f3;
+      --primary: #2b2b2b;
+      --accent: #c1a875;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.7;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('img/novo-lar.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.4rem;
+      margin-bottom: .8rem;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+
+    header p {
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    #countdown {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      letter-spacing: 1px;
+    }
+
+    .countdown-box {
+      margin-top: 2rem;
+      padding: 1.2rem 2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.08);
+      display: inline-block;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      opacity: 0.95;
+    }
+
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--accent);
+      margin: 1rem auto 0;
+    }
+
+    .about {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .gifts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .gift {
+      position: relative;
+      background: var(--card);
+      border-radius: 22px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .gift:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 30px 65px rgba(0,0,0,0.12);
+    }
+
+    .gift img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .gift:hover img {
+      transform: scale(1.08);
+    }
+
+    .gift-content {
+      padding: 2.2rem 1.8rem 2.4rem;
+      text-align: center;
+    }
+
+    .gift h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: .7rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 1.2rem 0 .6rem;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #b00000;
+      font-size: .95rem;
+      display: block;
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+
+    .premium {
+      animation: premiumGlow 2.4s infinite ease-in-out;
+      border: 2px solid rgba(193,168,117,0.6);
+    }
+
+    .badge.promo { background: #b00000; }
+
+    @keyframes premiumGlow {
+      0% { box-shadow: 0 0 0 rgba(193,168,117,0.0); transform: scale(1); }
+      30% { box-shadow: 0 0 35px rgba(193,168,117,0.85); transform: scale(1.04); }
+      60% { box-shadow: 0 0 65px rgba(193,168,117,1); transform: scale(1.07); }
+      80% { box-shadow: 0 0 45px rgba(193,168,117,0.9); transform: scale(1.05); }
+      100% { box-shadow: 0 0 0 rgba(193,168,117,0.0); transform: scale(1); }
+    }
+
+    .gift p {
+      font-size: .95rem;
+      color: #555;
+      margin-bottom: .8rem;
+    }
+
+    .btn-group { display:flex; justify-content:center; gap:.6rem; margin-top:.8rem; }
+    .btn-group button { width:auto; padding:.7rem 1.4rem; border-radius:40px; border:none; cursor:pointer; font-size:.9rem; transition:opacity .2s ease; }
+    .btn-group button:hover { opacity:.85; }
+
+    .gift button:hover { opacity: .85; }
+
+    .pix { background: var(--accent); color: #fff; }
+    .card { background: #ededed; }
+
+    /* Galeria */
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-top:2rem; }
+    .gallery-item { position:relative; overflow:hidden; border-radius:18px; }
+    .gallery-item img { width:100%; height:180px; object-fit:cover; transition:transform .4s ease; }
+    .gallery-item:hover img { transform:scale(1.08); }
+    .gallery-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.8rem; opacity:0; transition:opacity .3s ease; }
+    .gallery-item:hover .gallery-overlay { opacity:1; }
+
+    .gallery-btn { display:block; margin:2.5rem auto 0; padding:.7rem 1.8rem; border-radius:30px; border:1px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer; font-size:.9rem; }
+    .gallery-more { display:none; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-top:1.5rem; }
+    .gallery-more.active { display:grid; }
+
+    /* Modal PIX */
+    .pix-modal { position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; z-index:999; }
+    .pix-modal.active { display:flex; }
+    .pix-box { background:#fff; padding:2rem; border-radius:20px; max-width:360px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,0.2); }
+    .pix-box h3 { font-family:'Playfair Display',serif; margin-bottom:.5rem; }
+    .pix-key { background:#f2f2f2; padding:.7rem; border-radius:10px; font-weight:600; margin-top:.5rem; }
+
+    footer {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: #777;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: all .9s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.7rem; }
+      .gift img { height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Leonardo & Lorena</h1>
+    <p>18 • 07 • 2026</p>
+
+    <div class="countdown-box">
+      <div id="countdown">Carregando contagem...</div>
+    </div>
+
+    <p class="hero-sub">Celebrando o amor e o início do nosso para sempre</p>
+  </div>
+</header>
+
+<section>
+  <h2 class="section-title">Nossa História</h2>
+  <p class="about">Nossa história começou de forma leve e espontânea, entre conversas simples que aos poucos foram se tornando essenciais. Com o tempo, descobrimos que dividir a vida fazia tudo ter mais sentido: as viagens, os planos, as conquistas e até os dias comuns ganharam um novo brilho. Cada lembrança construída juntos fortaleceu a certeza de que queríamos seguir lado a lado, com amor, parceria e propósito. Agora iniciamos um novo capítulo, celebrando não apenas um casamento, mas a união de duas trajetórias que escolheram caminhar juntas para sempre.</p>
+</section>
+
+<section class="fade-in">
+  <h2 class="section-title">Presentes & Doações</h2>
+
+  <div style="text-align:center;margin-bottom:2.5rem;">
+    <label style="font-size:.9rem;color:#666;">Filtrar por valor:</label><br>
+    <select id="priceFilter" style="padding:8px 14px;border-radius:20px;border:1px solid #ccc;">
+      <option value="all">Todos</option>
+      <option value="500">Até R$ 500</option>
+      <option value="1000">Até R$ 1.000</option>
+      <option value="2000">Até R$ 2.000</option>
+      <option value="5000">Até R$ 5.000</option>
+    </select>
+  </div>
+
+  <div class="gifts">
+
+    <div class="gift fade-in" data-price="200">
+      <img src="img/cafe.jpg" alt="Café da manhã romântico elegante">
+      <div class="gift-content">
+        <h3>Café da Manhã dos Recém-Casados ☕</h3>
+        <div class="price">R$ 200,00</div>
+        <p>Promoção válida até o primeiro domingo pós-casamento 😄</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/2z88zio','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in" data-price="300">
+      <img src="img/jantar.jpg" alt="Jantar romântico à luz de velas">
+      <div class="gift-content">
+        <h3>Jantar à Luz de Velas 🍷</h3>
+        <div class="price">R$ 300,00</div>
+        <p>Clássico que nunca sai de moda.</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/1qWUubV','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in" data-price="350">
+      <img src="img/cafe.jpg" alt="Cinema em casa aconchegante">
+      <div class="gift-content">
+        <h3>Noite de Cinema em Casa 🎬</h3>
+        <div class="price">R$ 350,00</div>
+        <p>Pipoca liberada e filme escolhido no par ou ímpar.</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/2MVPdk7','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in" data-price="500">
+      <img src="img/fim-de-semana.jpg" alt="Fim de semana romântico na natureza">
+      <div class="gift-content">
+        <h3>Fim de Semana sem Pensar em Boletos 😌</h3>
+        <div class="price">R$ 500,00</div>
+        <p>Boleto não incluso nessa experiência.</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in" data-price="700">
+      <span class="badge">Mais escolhido</span>
+      <img src="img/lua-de-mel.jpg" alt="Lua de mel do casal">
+      <div class="gift-content">
+        <h3>Lua de Mel – Upgrade ✈️</h3>
+        <div class="price">R$ 700,00</div>
+        <p>Porque o amor merece conforto e aventura.</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/33GrmHq','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in" data-price="1000">
+      <img src="img/novo-lar.jpg" alt="Novo lar elegante do casal">
+      <div class="gift-content">
+        <h3>Kit Sobrevivência do Casamento 💍</h3>
+        <div class="price">R$ 1.000,00</div>
+        <p>Inclui paciência, amor e delivery.</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/1dW6MLV','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in" data-price="2000">
+      <span class="badge promo">Promoção</span>
+      <img src="img/novo-lar.jpg" alt="Casa sofisticada novo lar">
+      <div class="gift-content">
+        <h3>Novo Lar Premium 🏡</h3>
+        <span class="old-price">De R$ 3.500,00</span>
+        <div class="price">Por R$ 2.000,00</div>
+        <p>Desconto especial de inauguração.</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/1ftiwyg','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in" data-price="3500">
+      <span class="badge promo">Promoção</span>
+      <img src="img/cota-master.jpg" alt="Viagem romântica exclusiva do casal">
+      <div class="gift-content">
+        <h3>Cota Master dos Sonhos ✨</h3>
+        <span class="old-price">De R$ 6.500,00</span>
+        <div class="price">Por R$ 3.500,00</div>
+        <p>Uma ajuda especial para experiências inesquecíveis.</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/2yZBKGP','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gift fade-in premium" data-price="5000">
+      <span class="badge promo">Exclusivo</span>
+      <img src="img/premium.jpg" alt="Lua de mel luxuosa exclusiva">
+      <div class="gift-content">
+        <h3>Patrocinador Oficial do Casamento 🏆</h3>
+        <span class="old-price">De R$ 10.000,00</span>
+        <div class="price">Por R$ 5.000,00</div>
+        <p>Experiência premium, nome eternizado na nossa história 💛</p>
+        <div class="btn-group">
+          <button class="pix" onclick="openPixModal()">PIX 💛</button>
+          <button class="card" onclick="window.open('https://mpago.la/1tBj8qJ','_blank')">Cartão</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Galeria do Casal</h2>
+  <p class="about">Um espaço especial para registrar nossas memórias e momentos marcantes da nossa história 💛</p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item fade-in">
+      <img src="img/lua-de-mel.jpg" alt="Momento especial do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/jantar.jpg" alt="Momentos do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/fim-de-semana.jpg" alt="Viagens do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+  </div>
+
+  <button class="gallery-btn" onclick="toggleGallery()">Ver mais fotos</button>
+
+  <div class="gallery-more" id="galleryMore">
+    <div class="gallery-item fade-in">
+      <img src="img/cota-master.jpg" alt="Momentos especiais do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/premium.jpg" alt="Viagens e experiências">
+      <div class="gallery-overlay">❤</div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/novo-lar.jpg" alt="Fase elegante do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+  </div>
+</section>
+
+<footer>Com carinho, Leonardo & Lorena 💛</footer>
+
+<!-- Modal PIX -->
+<div class="pix-modal" id="pixModal">
+  <div class="pix-box">
+    <h3>Como presentear via PIX 💛</h3>
+    <p style="margin:1rem 0;">1. Abra o app do seu banco<br>
+    2. Escolha a opção PIX<br>
+    3. Selecione "Pagar" ou "Transferir"<br>
+    4. Cole a chave PIX abaixo<br>
+    5. Confirme o valor do presente escolhido</p>
+
+    <div class="pix-key">17997474884</div>
+
+    <button class="pix" onclick="copyPixKey()" style="margin-top:1rem;">Copiar chave PIX</button>
+    <button class="card" onclick="closePixModal()" style="margin-top:.5rem;">Fechar</button>
+  </div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const filter = document.getElementById('priceFilter');
+  const gifts = document.querySelectorAll('.gift');
+
+  filter.addEventListener('change', () => {
+    const value = filter.value;
+    gifts.forEach(gift => {
+      const price = parseInt(gift.dataset.price || 99999);
+      gift.style.display = value === 'all' || price <= value ? 'block' : 'none';
+    });
+  });
+
+  function openPixModal() {
+    const modal = document.getElementById('pixModal');
+    modal.classList.add('active');
+  }
+
+  function closePixModal() {
+    document.getElementById('pixModal').classList.remove('active');
+  }
+
+  function copyPixKey() {
+    navigator.clipboard.writeText('17997474884');
+    alert('Chave PIX copiada! 💛');
+  }
+
+  function toggleGallery() {
+    const more = document.getElementById('galleryMore');
+    more.classList.toggle('active');
+  }
+
+  const weddingDate = new Date('2026-07-18T00:00:00');
+  const countdownEl = document.getElementById('countdown');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      countdownEl.innerHTML = 'Hoje é o grande dia! 💍';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdownEl.innerHTML = `Faltam <strong>${days}</strong> dias • <strong>${hours}</strong>h • <strong>${minutes}</strong>m • <strong>${seconds}</strong>s`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+</body>
+</html>
