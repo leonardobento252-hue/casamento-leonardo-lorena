@@ -217,6 +217,34 @@
 
     footer { text-align:center; padding:4rem 1rem; color:#777; }
 
+    /* Lightbox Galeria */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 2rem;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+    }
+
     .fade-in { opacity:0; transform:translateY(25px); transition:all .9s ease; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
   </style>
@@ -388,6 +416,16 @@
       <div class="gallery-overlay">❤</div>
     </div>
   </div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/jantar.jpg" alt="Momentos do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/fim-de-semana.jpg" alt="Viagens do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+  </div>
 
   <div class="gallery-more" id="galleryMore">
     <div class="gallery-item fade-in"><img src="img/5.jpg" alt="Foto 5"><div class="gallery-overlay">❤</div></div>
@@ -404,6 +442,11 @@
 </section>
 
 <footer>Com carinho, Leonardo & Lorena 💛</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <img id="lightboxImg" src="" alt="Foto ampliada">
+</div>
 
 <div class="pix-modal" id="pixModal">
   <div class="pix-box">
@@ -442,9 +485,18 @@
     countdownEl.innerHTML=`Faltam <strong>${d}</strong> dias • <strong>${h}</strong>h • <strong>${m}</strong>m • <strong>${s}</strong>s`;
   }
   setInterval(updateCountdown,1000); updateCountdown();
+
+  // Lightbox galeria
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+    });
+  });
+  function closeLightbox(){ lightbox.classList.remove('active'); }
 </script>
 
 </body>
 </html>
-
-
