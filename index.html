@@ -544,34 +544,6 @@
 
   function toggleGallery(){ document.getElementById('galleryMore').classList.toggle('active'); }
   function openPixModal(){ document.getElementById('pixModal').classList.add('active'); }
-  // Mensagens dos convidados (salvas no navegador)
-  const form = document.getElementById('messageForm');
-  const list = document.getElementById('messagesList');
-
-  function renderMessages(){
-    const msgs = JSON.parse(localStorage.getItem('weddingMessages') || '[]');
-    list.innerHTML = msgs.map(m => `
-      <div style="background:#fff;border-radius:18px;padding:1.5rem 1.6rem;box-shadow:0 10px 30px rgba(0,0,0,0.05);">
-        <strong style="font-family:'Playfair Display',serif;font-size:1.1rem;">${m.name}</strong>
-        <p style="margin-top:.4rem;color:#555;">${m.text}</p>
-      </div>
-    `).join('');
-  }
-
-  if(form){
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const name = document.getElementById('guestName').value.trim();
-      const text = document.getElementById('guestMessage').value.trim();
-      if(!name || !text) return;
-      const msgs = JSON.parse(localStorage.getItem('weddingMessages') || '[]');
-      msgs.unshift({ name, text });
-      localStorage.setItem('weddingMessages', JSON.stringify(msgs));
-      form.reset();
-      renderMessages();
-    });
-    renderMessages();
-  }
 
   function closePixModal(){ document.getElementById('pixModal').classList.remove('active'); }
   function copyPixKey(){ navigator.clipboard.writeText('17997474884'); alert('Chave PIX copiada! 💛'); }
@@ -657,5 +629,6 @@
 </script>
 </body>
 </html>
+
 
 
