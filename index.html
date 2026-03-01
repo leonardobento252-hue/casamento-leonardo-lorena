@@ -15,7 +15,18 @@
       --accent: #c1a875;
       --card: #ffffff;
     }
+@media (max-width: 900px) {
+  .gifts {
+    grid-template-columns: repeat(2, 1fr); /* tablet */
+  }
+}
 
+@media (max-width: 600px) {
+  .gifts {
+    grid-template-columns: repeat(2, 1fr); /* celular */
+    gap: 1.2rem;
+  }
+}
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -490,6 +501,7 @@
 
 </body>
 </html>
+
 
 
 
