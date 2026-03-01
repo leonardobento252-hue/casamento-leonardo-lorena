@@ -15,18 +15,7 @@
       --accent: #c1a875;
       --card: #ffffff;
     }
-@media (max-width: 900px) {
-  .gifts {
-    grid-template-columns: repeat(2, 1fr); /* tablet */
-  }
-}
 
-@media (max-width: 600px) {
-  .gifts {
-    grid-template-columns: repeat(2, 1fr); /* celular */
-    gap: 1.2rem;
-  }
-}
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -54,7 +43,7 @@
 
     header h1 {
       font-family: 'Playfair Display', serif; /* mesma fonte dos títulos */
-      font-size: 6.8rem; /* maior e mais matrimonial */
+      font-size: 6.2rem; /* maior e mais matrimonial */
       margin-bottom: .8rem;
     }
 
@@ -121,9 +110,10 @@
 
     .gifts {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* SEMPRE 3 por linha */
+      grid-template-columns: repeat(3, 1fr); /* 3 por linha no desktop */
       gap: 2.2rem;
     }
+
     .gift {
       position: relative;
       background: var(--card);
@@ -258,6 +248,20 @@
 
     .fade-in { opacity:0; transform:translateY(25px); transition:all .9s ease; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
+  
+    /* Responsivo para presentes */
+    @media (max-width: 900px) {
+      .gifts {
+        grid-template-columns: repeat(2, 1fr); /* tablet */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gifts {
+        grid-template-columns: repeat(2, 1fr); /* celular */
+        gap: 1.2rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -427,6 +431,16 @@
       <div class="gallery-overlay">❤</div>
     </div>
   </div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/jantar.jpg" alt="Momentos do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="img/fim-de-semana.jpg" alt="Viagens do casal">
+      <div class="gallery-overlay">❤</div>
+    </div>
+  </div>
 
   <div class="gallery-more" id="galleryMore">
     <div class="gallery-item fade-in"><img src="img/5.jpg" alt="Foto 5"><div class="gallery-overlay">❤</div></div>
@@ -501,9 +515,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
