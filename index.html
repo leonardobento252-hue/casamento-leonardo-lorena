@@ -207,12 +207,8 @@
     .gallery-item:hover .gallery-overlay { opacity:1; }
 
     .gallery-btn { display:block; margin:2.5rem auto 0; padding:.7rem 1.8rem; border-radius:30px; border:1px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer; font-size:.9rem; }
-    .gallery-more {
-      display: grid; /* todas as fotos já em grid */
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1.5rem;
-      margin-top:1.5rem;
-    }
+    .gallery-more { display:none; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-top:1.5rem; }
+    .gallery-more.active { display:grid; }
     .gallery-more.active { display:grid; }
 
     /* Modal PIX */
@@ -279,14 +275,20 @@
 
       .gift button {
       width: 100%;
-      padding: .9rem 1.2rem;
+      padding: 1.1rem 1.6rem; /* maiores */
       border-radius: 999px; /* bem arredondado */
       border: none;
       cursor: pointer;
-      margin-top: .6rem;
-      font-size: .95rem;
+      margin-top: .7rem;
+      font-size: 1rem;
       font-weight: 600;
       transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+    }
+
+    .gift button:hover {
+      opacity: .92;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.14);
     }
 
     .gift button:hover {
@@ -315,17 +317,7 @@
   <p class="about">Nossa história começou de forma leve e espontânea, entre conversas simples que aos poucos foram se tornando essenciais. Com o tempo, descobrimos que dividir a vida fazia tudo ter mais sentido: as viagens, os planos, as conquistas e até os dias comuns ganharam um novo brilho. Cada lembrança construída juntos fortaleceu a certeza de que queríamos seguir lado a lado, com amor, parceria e propósito. Agora iniciamos um novo capítulo, celebrando não apenas um casamento, mas a união de duas trajetórias que escolheram caminhar juntas para sempre.</p>
 </section>
 
-<section>
-  <h2 class="section-title">Local da Cerimônia & Recepção</h2>
-  <div class="about" style="margin-bottom:2.5rem;">
-    <strong>Estância Krik</strong><br>
-    <a href="https://maps.app.goo.gl/Nbm7yKFxPusCZuYc9" target="_blank" style="color: var(--accent); text-decoration:none;">Abrir no Google Maps</a>
-  </div>
 
-  <div style="border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.08); margin-bottom:3rem;">
-    <iframe src="https://www.google.com/maps?q=Estancia%20Krik&output=embed" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-</section>
 
 <section class="fade-in">
   <h2 class="section-title">Presentes & Doações</h2>
