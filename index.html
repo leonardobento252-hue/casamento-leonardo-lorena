@@ -600,7 +600,62 @@
   });
   function closeLightbox(){ lightbox.classList.remove('active'); }
 </script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+<script>
+  // Configuração Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyBe1aubVeMz92EsROvBkyu56iuewhMmz2g",
+    authDomain: "casamento-leonardo-lorena.firebaseapp.com",
+    projectId: "casamento-leonardo-lorena",
+    storageBucket: "casamento-leonardo-lorena.firebasestorage.app",
+    messagingSenderId: "778186757904",
+    appId: "1:778186757904:web:42612e07d55a6a3927b795"
+  };
+
+  // Inicializar Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Formulário de mensagens
+  const form = document.getElementById('messageForm');
+  const list = document.getElementById('messagesList');
+
+  // Enviar mensagem
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('guestName').value.trim();
+    const text = document.getElementById('guestMessage').value.trim();
+    if (!name || !text) return;
+
+    await db.collection("mensagens").add({
+      name,
+      text,
+      createdAt: new Date()
+    });
+
+    form.reset();
+  });
+
+  // Ouvir mensagens em tempo real (mural público)
+  db.collection("mensagens")
+    .orderBy("createdAt", "desc")
+    .onSnapshot(snapshot => {
+      list.innerHTML = "";
+      snapshot.forEach(doc => {
+        const m = doc.data();
+        list.innerHTML += `
+          <div style="background:#fff;border-radius:18px;padding:1.5rem 1.6rem;box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+            <strong style="font-family:'Playfair Display',serif;font-size:1.1rem;">${m.name}</strong>
+            <p style="margin-top:.4rem;color:#555;">${m.text}</p>
+          </div>
+        `;
+      });
+    });
+</script>
 </body>
 </html>
+
 
