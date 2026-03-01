@@ -110,9 +110,27 @@
 
     .gifts {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 2.2rem;
-    }
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.6rem;
+
+      @media (max-width: 600px) {
+  .gifts {
+    grid-template-columns: repeat(2, 1fr); /* 2 presentes por linha */
+    gap: 1.2rem;
+  }
+
+  .gift img {
+    height: 140px;
+  }
+
+  .gift h3 {
+    font-size: 1.1rem;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+}
 
     .gift {
       position: relative;
@@ -491,5 +509,6 @@
 
 </body>
 </html>
+
 
 
