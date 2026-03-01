@@ -207,7 +207,12 @@
     .gallery-item:hover .gallery-overlay { opacity:1; }
 
     .gallery-btn { display:block; margin:2.5rem auto 0; padding:.7rem 1.8rem; border-radius:30px; border:1px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer; font-size:.9rem; }
-    .gallery-more { display:none; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-top:1.5rem; }
+    .gallery-more {
+      display: grid; /* todas as fotos já em grid */
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1.5rem;
+      margin-top:1.5rem;
+    }
     .gallery-more.active { display:grid; }
 
     /* Modal PIX */
@@ -273,9 +278,22 @@
       .gift p { font-size: .85rem; }
 
       .gift button {
-        font-size: .85rem;
-        padding: .6rem;
-      }
+      width: 100%;
+      padding: .9rem 1.2rem;
+      border-radius: 999px; /* bem arredondado */
+      border: none;
+      cursor: pointer;
+      margin-top: .6rem;
+      font-size: .95rem;
+      font-weight: 600;
+      transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+    }
+
+    .gift button:hover {
+      opacity: .9;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
     }
   </style>
 </head>
@@ -322,7 +340,7 @@
         <div class="price">R$ 700,00</div>
         <p>Porque o amor merece conforto e aventura.</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/33GrmHq" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/33GrmHq" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -334,7 +352,7 @@
         <div class="price">R$ 300,00</div>
         <p>Clássico que nunca sai de moda.</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1qWUubV" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/1qWUubV" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -346,7 +364,7 @@
         <div class="price">R$ 1.000,00</div>
         <p>Inclui paciência, amor e delivery.</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1dW6MLV" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/1dW6MLV" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -358,7 +376,7 @@
         <div class="price">R$ 200,00</div>
         <p>Promoção válida até o primeiro domingo pós-casamento 😄</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2z88zio" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/2z88zio" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -372,7 +390,7 @@
         <div class="price">Por R$ 2.000,00</div>
         <p>Desconto especial de inauguração.</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1ftiwyg" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/1ftiwyg" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -384,7 +402,7 @@
         <div class="price">R$ 350,00</div>
         <p>Pipoca liberada e filme escolhido no par ou ímpar.</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2MVPdk7" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/2MVPdk7" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -396,7 +414,7 @@
         <div class="price">R$ 500,00</div>
         <p>Boleto não incluso nessa experiência.</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2JLeMnk" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/2JLeMnk" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -410,7 +428,7 @@
         <div class="price">Por R$ 3.500,00</div>
         <p>Uma ajuda especial para experiências inesquecíveis.</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2yZBKGP" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/2yZBKGP" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
@@ -424,10 +442,22 @@
         <div class="price">Por R$ 5.000,00</div>
         <p>Experiência premium, nome eternizado na nossa história 💛</p>
         <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1tBj8qJ" target="_blank"><button class="card">Cartão de Crédito</button></a>
+        <a href="https://mpago.la/1tBj8qJ" target="_blank"><button class="card">Cartão 💳</button></a>
       </div>
     </div>
 
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Local da Cerimônia & Recepção</h2>
+  <div class="about" style="margin-bottom:2.5rem;">
+    <strong>Estância Krik</strong><br>
+    <a href="https://maps.app.goo.gl/Nbm7yKFxPusCZuYc9" target="_blank" style="color: var(--accent); text-decoration:none;">Abrir no Google Maps</a>
+  </div>
+
+  <div style="border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.08); margin-bottom:3rem;">
+    <iframe src="https://www.google.com/maps?q=Estancia%20Krik&output=embed" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
@@ -447,6 +477,8 @@
     <div class="gallery-item fade-in">
       <img src="img/4.jpg" alt="Foto do casal 4">
       <div class="gallery-overlay">❤</div>
+    </div>
+  </div>
     </div>
     <div class="gallery-item fade-in">
       <img src="img/jantar.jpg" alt="Momentos do casal">
@@ -579,4 +611,3 @@
 
 </body>
 </html>
-
