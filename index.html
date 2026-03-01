@@ -490,7 +490,10 @@
     </form>
   </div>
 
-  <div id="messagesList" style="max-width:800px;margin:3rem auto 0;display:flex;flex-direction:column;gap:1.5rem;"></Com carinho, Leonardo & Lorena 💛</footer>
+  <div id="messagesList" style="max-width:800px;margin:3rem auto 0;display:flex;flex-direction:column;gap:1.5rem;"></div>
+</section>
+
+<footer>Com carinho, Leonardo & Lorena 💛</footer>
 
 <div class="lightbox" id="lightbox">
   <span class="lightbox-close" onclick="closeLightbox()">×</span>
@@ -519,7 +522,7 @@
 
   function toggleGallery(){ document.getElementById('galleryMore').classList.toggle('active'); }
   function openPixModal(){ document.getElementById('pixModal').classList.add('active'); }
-  function closePixModal(){// Mensagens dos convidados (salvas no navegador)
+  // Mensagens dos convidados (salvas no navegador)
   const form = document.getElementById('messageForm');
   const list = document.getElementById('messagesList');
 
@@ -545,7 +548,10 @@
       form.reset();
       renderMessages();
     });
-    renderMessages(Id('pixModal').classList.remove('active'); }
+    renderMessages();
+  }
+
+  function closePixModal(){ document.getElementById('pixModal').classList.remove('active'); }
   function copyPixKey(){ navigator.clipboard.writeText('17997474884'); alert('Chave PIX copiada! 💛'); }
 
   const weddingDate = new Date('2026-07-18T00:00:00');
