@@ -246,7 +246,40 @@
 
     .fade-in { opacity:0; transform:translateY(25px); transition:all .9s ease; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
-  
+  /* ===== MODAL CONFIRMAÇÃO ===== */
+.confirm-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.confirm-modal.active {
+  display: flex;
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 2.2rem;
+  border-radius: 22px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+}
+
+.confirm-box input,
+.confirm-box textarea {
+  width: 100%;
+  margin-top: .8rem;
+  padding: .8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-family: inherit;
+}
     /* Responsivo para presentes */
     @media (max-width: 900px) {
       .gifts {
@@ -293,40 +326,7 @@
       transform: translateY(-1px);
       box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     }
-/* ===== MODAL CONFIRMAÇÃO ===== */
-.confirm-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
 
-.confirm-modal.active {
-  display: flex;
-}
-
-.confirm-box {
-  background: #fff;
-  padding: 2.2rem;
-  border-radius: 22px;
-  width: 90%;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.25);
-}
-
-.confirm-box input,
-.confirm-box textarea {
-  width: 100%;
-  margin-top: .8rem;
-  padding: .8rem 1rem;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  font-family: inherit;
-}
     }
   </style>
 </head>
@@ -720,6 +720,7 @@ async function confirmPurchase(){
 </script>
 </body>
 </html>
+
 
 
 
