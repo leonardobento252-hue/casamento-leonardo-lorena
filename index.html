@@ -614,7 +614,51 @@
   // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
+/* ===== SISTEMA CONFIRMAÇÃO COMPRA ===== */
 
+let selectedGift = {};
+let redirectUrl = "";
+let paymentMethod = "";
+
+function openConfirmModal(giftName, value, payment, url){
+  selectedGift = { giftName, value };
+  paymentMethod = payment;
+  redirectUrl = url;
+
+  document.getElementById('confirmGiftName').innerText =
+    `${giftName} — R$ ${value}`;
+
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+function closeConfirmModal(){
+  document.getElementById('confirmModal').classList.remove('active');
+}
+
+async function confirmPurchase(){
+  const name = document.getElementById('buyerName').value.trim();
+  const message = document.getElementById('buyerMessage').value.trim();
+  if(!name) return alert("Informe seu nome 💛");
+
+  await db.collection("compras").add({
+    nome: name,
+    mensagem: message,
+    presente: selectedGift.giftName,
+    valor: selectedGift.value,
+    pagamento: paymentMethod,
+    data: new Date()
+  });
+
+  closeConfirmModal();
+
+  if(paymentMethod === "pix"){
+    openPixModal();
+  } else {
+    window.open(redirectUrl, "_blank");
+  }
+}
+
+/* ===== FIM SISTEMA CONFIRMAÇÃO ===== */
   // Formulário de mensagens
   const form = document.getElementById('messageForm');
   const list = document.getElementById('messagesList');
@@ -653,6 +697,7 @@
 </script>
 </body>
 </html>
+
 
 
 
