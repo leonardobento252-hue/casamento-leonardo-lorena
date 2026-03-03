@@ -343,8 +343,15 @@
         <h3>Lua de Mel – Upgrade ✈️</h3>
         <div class="price">R$ 700,00</div>
         <p>Porque o amor merece conforto e aventura.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/33GrmHq" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Lua de Mel – Upgrade', 700, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Lua de Mel – Upgrade', 700, 'cartao', 'https://mpago.la/33GrmHq')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -697,6 +704,7 @@ async function confirmPurchase(){
 </script>
 </body>
 </html>
+
 
 
 
