@@ -38,12 +38,9 @@
       color: #fff;
     }
 
-    
-    }
-
     header h1 {
       font-family: 'Playfair Display', serif; /* mesma fonte dos títulos */
-      font-size: 6.2rem; /* maior e mais matrimonial */
+      font-size: clamp(2.8rem, 6vw, 6.2rem); /* maior e mais matrimonial */
       margin-bottom: .8rem;
     }
 
@@ -249,7 +246,40 @@
 
     .fade-in { opacity:0; transform:translateY(25px); transition:all .9s ease; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
-  
+  /* ===== MODAL CONFIRMAÇÃO ===== */
+.confirm-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.confirm-modal.active {
+  display: flex;
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 2.2rem;
+  border-radius: 22px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+}
+
+.confirm-box input,
+.confirm-box textarea {
+  width: 100%;
+  margin-top: .8rem;
+  padding: .8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-family: inherit;
+}
     /* Responsivo para presentes */
     @media (max-width: 900px) {
       .gifts {
@@ -258,81 +288,67 @@
     }
 
     @media (max-width: 600px) {
-
-  header div {
-    transform: translateY(-10px);
-  }
-
-  header h1 {
-    font-size: 2.9rem;
-    line-height: 1.05;
-  }
-
-  header p {
-    font-size: .8rem;
-    letter-spacing: 3px;
-  }
-
-  .countdown-box {
-    margin-top: 1.4rem;
-    padding: .9rem 1.2rem;
-  }
-
-  #countdown {
-    font-size: .85rem;
-  }
-
-  .hero-sub {
-    font-size: .78rem;
-    margin-top: .9rem;
-    padding: 0 1rem;
-  }
-
-  .gifts {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .gift img {
-    height: 120px;
-  }
-
-  .gift-content {
-    padding: 1.4rem 1.2rem 1.6rem;
-  }
-
-  .gift h3 {
-    font-size: 1rem;
-    line-height: 1.25;
-  }
-
-  .price {
-    font-size: 1rem;
-    margin: .6rem 0 .3rem;
-  }
-
-  .gift p {
-    font-size: .85rem;
-  }
-
-  .gift button {
-    width: 100%;
-    padding: 1rem 1.2rem;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    margin-top: .7rem;
-    font-size: .95rem;
-    font-weight: 600;
-    transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
-  }
-
-  .gift button:hover {
-    opacity: .92;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(0,0,0,0.14);
-  }
+      .gifts {
+        grid-template-columns: repeat(2, 1fr); /* celular */
+        gap: 1rem;
+        header h1 {
+  font-size: 2.8rem;
+  line-height: 1.1;
 }
+
+header p {
+  font-size: .8rem;
+  letter-spacing: 3px;
+}
+
+.countdown-box {
+  padding: .7rem 1rem;
+}
+
+#countdown {
+  font-size: .85rem;
+}
+
+.hero-sub {
+  font-size: .8rem;
+}
+      }
+
+      .gift img { height: 120px; }
+
+      .gift-content { padding: 1.4rem 1.2rem 1.6rem; }
+
+      .gift h3 { font-size: 1rem; line-height: 1.25; }
+
+      .price { font-size: 1rem; margin: .6rem 0 .3rem; }
+
+      .gift p { font-size: .85rem; }
+
+      .gift button {
+      width: 100%;
+      padding: 1.1rem 1.6rem; /* maiores */
+      border-radius: 999px; /* bem arredondado */
+      border: none;
+      cursor: pointer;
+      margin-top: .7rem;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+    }
+
+    .gift button:hover {
+      opacity: .92;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.14);
+    }
+
+    .gift button:hover {
+      opacity: .9;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
+
+    }
   </style>
 </head>
 <body>
@@ -367,8 +383,15 @@
         <h3>Lua de Mel – Upgrade ✈️</h3>
         <div class="price">R$ 700,00</div>
         <p>Porque o amor merece conforto e aventura.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/33GrmHq" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Lua de Mel – Upgrade', 700, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Lua de Mel – Upgrade', 700, 'cartao', 'https://mpago.la/33GrmHq')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -379,8 +402,15 @@
         <h3>Jantar à Luz de Velas 🍷</h3>
         <div class="price">R$ 300,00</div>
         <p>Clássico que nunca sai de moda.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1qWUubV" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Jantar à Luz de Velas', 300, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Jantar à Luz de Velas', 300, 'cartao', 'https://mpago.la/1qWUubV')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -391,8 +421,15 @@
         <h3>Kit Sobrevivência do Casamento 💍</h3>
         <div class="price">R$ 1.000,00</div>
         <p>Inclui paciência, amor e delivery.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1dW6MLV" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Kit Sobrevivência do Casamento', 1000, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Kit Sobrevivência do Casamento', 1000, 'cartao', 'https://mpago.la/1dW6MLV')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -403,22 +440,36 @@
         <h3>Café da Manhã dos Recém-Casados ☕</h3>
         <div class="price">R$ 200,00</div>
         <p>Promoção válida até o primeiro domingo pós-casamento 😄</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2z88zio" target="_blank"><button class="card">Cartão 💳</button></a>
+     <button class="pix"
+onclick="openConfirmModal('Café da Manhã dos Recém-Casados', 200, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Café da Manhã dos Recém-Casados', 200, 'cartao', 'https://mpago.la/2z88zio')">
+Cartão 💳
+</button>
       </div>
     </div>
 
     <!-- 2000 -->
     <div class="gift fade-in" data-price="2000">
       <span class="badge promo">Promoção</span>
-      <img src="img/lar-premium.jpg" alt="Casa sofisticada novo lar">
+      <img src="img/novo-lar.jpg" alt="Casa sofisticada novo lar">
       <div class="gift-content">
         <h3>Novo Lar Premium 🏡</h3>
         <span class="old-price">De R$ 3.500,00</span>
         <div class="price">Por R$ 2.000,00</div>
         <p>Desconto especial de inauguração.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1ftiwyg" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Novo Lar Premium', 2000, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Novo Lar Premium', 2000, 'cartao', 'https://mpago.la/1ftiwyg')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -429,8 +480,15 @@
         <h3>Noite de Cinema em Casa 🎬</h3>
         <div class="price">R$ 350,00</div>
         <p>Pipoca liberada e filme escolhido no par ou ímpar.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2MVPdk7" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Noite de Cinema em Casa', 350, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Noite de Cinema em Casa', 350, 'cartao', 'https://mpago.la/2MVPdk7')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -441,22 +499,36 @@
         <h3>Fim de Semana sem Pensar em Boletos 😌</h3>
         <div class="price">R$ 500,00</div>
         <p>Boleto não incluso nessa experiência.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2JLeMnk" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Fim de Semana sem Pensar em Boletos', 500, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Fim de Semana sem Pensar em Boletos', 500, 'cartao', 'https://mpago.la/2JLeMnk')">
+Cartão 💳
+</button>
       </div>
     </div>
 
     <!-- 3500 -->
     <div class="gift fade-in" data-price="3500">
       <span class="badge promo">Promoção</span>
-      <img src="img/experiencias.jpg" alt="Experiências românticas do casal">
+      <img src="img/cota-master.jpg" alt="Experiências românticas do casal">
       <div class="gift-content">
         <h3>Cota Master dos Sonhos ✨</h3>
         <span class="old-price">De R$ 6.500,00</span>
         <div class="price">Por R$ 3.500,00</div>
         <p>Uma ajuda especial para experiências inesquecíveis.</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/2yZBKGP" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Cota Master dos Sonhos', 3500, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Cota Master dos Sonhos', 3500, 'cartao', 'https://mpago.la/2yZBKGP')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -469,8 +541,15 @@
         <span class="old-price">De R$ 10.000,00</span>
         <div class="price">Por R$ 5.000,00</div>
         <p>Experiência premium, nome eternizado na nossa história 💛</p>
-        <button class="pix" onclick="openPixModal()">PIX 💛</button>
-        <a href="https://mpago.la/1tBj8qJ" target="_blank"><button class="card">Cartão 💳</button></a>
+        <button class="pix"
+onclick="openConfirmModal('Patrocinador Oficial do Casamento', 5000, 'pix', '')">
+PIX 💛
+</button>
+
+<button class="card"
+onclick="openConfirmModal('Patrocinador Oficial do Casamento', 5000, 'cartao', 'https://mpago.la/1tBj8qJ')">
+Cartão 💳
+</button>
       </div>
     </div>
 
@@ -505,8 +584,6 @@
     <div class="gallery-item fade-in">
       <img src="img/4.jpg" alt="Foto do casal 4">
       <div class="gallery-overlay">❤</div>
-    </div>
-  </div>
     </div>
     <div class="gallery-item fade-in">
       <img src="img/jantar.jpg" alt="Momentos do casal">
@@ -557,7 +634,19 @@
   <span class="lightbox-close" onclick="closeLightbox()">×</span>
   <img id="lightboxImg" src="" alt="Foto ampliada">
 </div>
+<!-- MODAL CONFIRMAÇÃO -->
+<div class="confirm-modal" id="confirmModal">
+  <div class="confirm-box">
+    <h3>Confirmar Presente 💛</h3>
+    <p id="confirmGiftName" style="margin:.5rem 0 1rem;color:#666;"></p>
 
+    <input type="text" id="buyerName" placeholder="Seu nome" required>
+    <textarea id="buyerMessage" placeholder="Mensagem (opcional)" rows="3"></textarea>
+
+    <button class="pix" onclick="confirmPurchase()">Confirmar Presente</button>
+    <button class="card" onclick="closeConfirmModal()" style="margin-top:.5rem;">Cancelar</button>
+  </div>
+</div>
 <div class="pix-modal" id="pixModal">
   <div class="pix-box">
     <h3>Como presentear via PIX 💛</h3>
@@ -580,34 +669,6 @@
 
   function toggleGallery(){ document.getElementById('galleryMore').classList.toggle('active'); }
   function openPixModal(){ document.getElementById('pixModal').classList.add('active'); }
-  // Mensagens dos convidados (salvas no navegador)
-  const form = document.getElementById('messageForm');
-  const list = document.getElementById('messagesList');
-
-  function renderMessages(){
-    const msgs = JSON.parse(localStorage.getItem('weddingMessages') || '[]');
-    list.innerHTML = msgs.map(m => `
-      <div style="background:#fff;border-radius:18px;padding:1.5rem 1.6rem;box-shadow:0 10px 30px rgba(0,0,0,0.05);">
-        <strong style="font-family:'Playfair Display',serif;font-size:1.1rem;">${m.name}</strong>
-        <p style="margin-top:.4rem;color:#555;">${m.text}</p>
-      </div>
-    `).join('');
-  }
-
-  if(form){
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const name = document.getElementById('guestName').value.trim();
-      const text = document.getElementById('guestMessage').value.trim();
-      if(!name || !text) return;
-      const msgs = JSON.parse(localStorage.getItem('weddingMessages') || '[]');
-      msgs.unshift({ name, text });
-      localStorage.setItem('weddingMessages', JSON.stringify(msgs));
-      form.reset();
-      renderMessages();
-    });
-    renderMessages();
-  }
 
   function closePixModal(){ document.getElementById('pixModal').classList.remove('active'); }
   function copyPixKey(){ navigator.clipboard.writeText('17997474884'); alert('Chave PIX copiada! 💛'); }
@@ -636,6 +697,119 @@
   });
   function closeLightbox(){ lightbox.classList.remove('active'); }
 </script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+<script>
+  // Configuração Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyBe1aubVeMz92EsROvBkyu56iuewhMmz2g",
+    authDomain: "casamento-leonardo-lorena.firebaseapp.com",
+    projectId: "casamento-leonardo-lorena",
+    storageBucket: "casamento-leonardo-lorena.firebasestorage.app",
+    messagingSenderId: "778186757904",
+    appId: "1:778186757904:web:42612e07d55a6a3927b795"
+  };
+
+  // Inicializar Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+let selectedGift = {};
+let redirectUrl = "";
+let paymentMethod = "";
+
+function openConfirmModal(giftName, value, payment, url){
+  selectedGift = { giftName, value };
+  paymentMethod = payment;
+  redirectUrl = url;
+
+  document.getElementById('confirmGiftName').innerText =
+    `${giftName} — R$ ${value}`;
+
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+function closeConfirmModal(){
+  document.getElementById('confirmModal').classList.remove('active');
+}
+
+async function confirmPurchase(){
+  const name = document.getElementById('buyerName').value.trim();
+  const message = document.getElementById('buyerMessage').value.trim();
+  if(!name) return alert("Informe seu nome 💛");
+
+  await db.collection("compras").add({
+    nome: name,
+    mensagem: message,
+    presente: selectedGift.giftName,
+    valor: selectedGift.value,
+    pagamento: paymentMethod,
+    data: new Date()
+  });
+
+  closeConfirmModal();
+
+  if(paymentMethod === "pix"){
+    openPixModal();
+  } else {
+    window.open(redirectUrl, "_blank");
+  }
+}
+
+/* ===== FIM SISTEMA CONFIRMAÇÃO ===== */
+  // Formulário de mensagens
+  const form = document.getElementById('messageForm');
+  const list = document.getElementById('messagesList');
+
+  // Enviar mensagem
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('guestName').value.trim();
+    const text = document.getElementById('guestMessage').value.trim();
+    if (!name || !text) return;
+
+    await db.collection("mensagens").add({
+      name,
+      text,
+      createdAt: new Date()
+    });
+
+    form.reset();
+  });
+
+  // Ouvir mensagens em tempo real (mural público)
+  db.collection("mensagens")
+    .orderBy("createdAt", "desc")
+    .onSnapshot(snapshot => {
+      list.innerHTML = "";
+      snapshot.forEach(doc => {
+        const m = doc.data();
+        list.innerHTML += `
+          <div style="background:#fff;border-radius:18px;padding:1.5rem 1.6rem;box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+            <strong style="font-family:'Playfair Display',serif;font-size:1.1rem;">${m.name}</strong>
+            <p style="margin-top:.4rem;color:#555;">${m.text}</p>
+          </div>
+        `;
+      });
+    });
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
