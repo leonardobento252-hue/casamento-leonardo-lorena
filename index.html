@@ -754,7 +754,7 @@ async function confirmPurchase(){
   if(paymentMethod === "pix"){
     openPixModal();
   } else {
-    window.open(redirectUrl, "_blank");
+    window.location.href = redirectUrl;
   }
 }
 
