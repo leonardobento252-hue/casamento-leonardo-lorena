@@ -751,11 +751,26 @@ async function confirmPurchase(){
 
   closeConfirmModal();
 
-  if(paymentMethod === "pix"){
+if (paymentMethod === "pix") {
+
     openPixModal();
-  } else {
+
+} else {
+
+    // Verifica se é iPhone/iPad
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+
+        alert(
+            "📱 Atenção!\n\n" +
+            "Se aparecer a mensagem para abrir o aplicativo Mercado Pago, toque em 'Cancelar'.\n\n" +
+            "O pagamento continuará normalmente no Safari."
+        );
+
+    }
+
     window.location.href = redirectUrl;
-  }
+
+}
 }
 
 /* ===== FIM SISTEMA CONFIRMAÇÃO ===== */
